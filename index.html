@@ -3,60 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário</title>
+    <title>Formulário de Contato</title>
+    <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <h1>Minha Empresa</h1>
+        </div>
+    </header>
 
-    <h1>Formulário de Contato</h1>
-    
-    <form id="contactForm">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        <br><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br><br>
-        
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" required></textarea>
-        <br><br>
-        
-        <button type="submit">Enviar</button>
-    </form>
+    <div class="sidebar">
+        <ul>
+            <li><a href="noticias.html">Home</a></li>
+            <li><a href="index.html">Envia noticia</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </div>
 
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+    <main>
+        <div class="form-container">
+            <h2>Envio de Noticia</h2>
+            <form id="contactForm">
+                <div class="input-group">
+                    <label for="nome">Titulo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
 
-            const nome = document.getElementById("nome").value;
-            const email = document.getElementById("email").value;
-            const mensagem = document.getElementById("mensagem").value;
+                <div class="input-group">
+                    <label for="email">Texto:</label>
+                    <input type="text" id="email" name="email" required>
+                </div>
 
-            const data = {
-                nome: nome,
-                email: email,
-                mensagem: mensagem
-            };
+                <div class="input-group">
+                    <label for="file">Imagem:</label>
+                    <textarea type="file" id="mensagem" name="mensagem" required></textarea>
+                </div>
 
-            fetch('https://script.google.com/macros/s/AKfycbz55Dabgvl-icaTP0BJ3o5UXtKPy9PTC6yB1MnYNR7KrgSBEdfezLR29IRxsRctRoiuHQ/exec', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-                mode: 'no-cors',  // Ignora a verificação de CORS
-            })
-            .then(response => {
-                console.log('Requisição feita com sucesso', response);
-                alert("Formulário enviado com sucesso!");
-            })
-            .catch(error => {
-                console.log('Erro na requisição', error);
-                alert("Erro ao enviar o formulário. Tente novamente.");
-            });
-        });
-    </script>
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+        </div>
+    </main>
 
+    <footer>
+        <p>&copy; 2025 Minha Empresa. Todos os direitos reservados.</p>
+    </footer>
+    <script src="Script.js"></script>
 </body>
 </html>

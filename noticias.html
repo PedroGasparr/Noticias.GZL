@@ -1,109 +1,134 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Notícias</title>
+    <title>Portal de Notícias</title>
+    <link rel="stylesheet" href="Styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
+        /* Estilo para o container de notícias */
         .news-container {
-            width: 80%;
-            margin: 20px auto;
+            display: flex;
+            flex-direction: column; /* Alterado para 'column' para mostrar as notícias mais recentes primeiro */
+            gap: 20px;
         }
+        
+        /* Estilo para cada item de notícia */
         .news-item {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            padding: 15px;
+            background-color: #f9f9f9;
             border-radius: 5px;
         }
-        .news-item h3 {
-            margin-top: 0;
-        }
+
         .news-item img {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            max-width: 300px;
             margin-top: 10px;
         }
-        .news-item .date {
+
+        .date {
+            color: #888;
             font-size: 0.9em;
-            color: #666;
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
     <header>
-        <h1>Portal de Notícias</h1>
+        <div class="logo">
+            <h1>Minha Empresa</h1>
+        </div>
     </header>
 
-    <div class="news-container" id="news-container">
-        <!-- As notícias serão carregadas aqui -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="noticias.html">Home</a></li>
+            <li><a href="index.html">Envia noticia</a></li>
+            <li><a href="#">Serviços</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
     </div>
+
+    <main>
+        <div class="news-container" id="news-container">
+            <h2>Últimas Notícias</h2>
+            <!-- As notícias serão carregadas aqui -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Minha Empresa. Todos os direitos reservados.</p>
+    </footer>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {
-            packages: ['table']
-        });
-
+        google.charts.load('current', { packages: ['table'] });
         google.charts.setOnLoadCallback(drawTable);
 
+        function formatDate(dateString) {
+            var date = new Date(dateString);
+            var day = ("0" + date.getDate()).slice(-2);
+            var month = ("0" + (date.getMonth() + 1)).slice(-2); // Meses começam do 0
+            var year = date.getFullYear();
+            var hours = ("0" + date.getHours()).slice(-2);
+            var minutes = ("0" + date.getMinutes()).slice(-2);
+            var seconds = ("0" + date.getSeconds()).slice(-2);
+            return day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+        }
+
         function drawTable() {
-            var queryString = encodeURIComponent('SELECT A, B, C, D'); // A é data e hora, B é título, C é conteúdo e D é imagem
-            var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1IFbJ6NOcliINnkn7ZrfuNLYEIJXY_lfd84ViECMQEqU/gviz/tq?tqx=out:html&sheet=SUA_ABA&' + queryString);
+            var queryString = encodeURIComponent('SELECT A, B, C, D');
+            var query = new google.visualization.Query('https://docs.google.com/spreadsheets/d/1dEiHBVVDj65JRpZdCoaklM4Shup9e-WDV_xxSUvlEq0/edit?gid=0#gid=0' + queryString);
             
             query.send(function(response) {
                 var data = response.getDataTable();
                 var rows = data.getNumberOfRows();
                 var newsContainer = document.getElementById('news-container');
 
+                // Criar um array para armazenar as notícias e ordená-las
+                var newsItems = [];
+                
                 for (var i = 0; i < rows; i++) {
-                    var date = data.getValue(i, 0); // Coluna A - Data e Hora
-                    var title = data.getValue(i, 1); // Coluna B - Título
-                    var content = data.getValue(i, 2); // Coluna C - Texto
-                    var imageUrl = data.getValue(i, 3); // Coluna D - URL da Imagem
+                    var date = data.getValue(i, 3);
+                    var title = data.getValue(i, 0);
+                    var content = data.getValue(i, 1);
+                    var imageUrl = data.getValue(i, 2);
 
-                    var newsItem = document.createElement('div');
-                    newsItem.className = 'news-item';
+                    // Adiciona as notícias em um array
+                    newsItems.push({ date: date, title: title, content: content, imageUrl: imageUrl });
+                }
+
+                // Ordena as notícias por data (do mais recente para o mais antigo)
+                newsItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                // Cria os elementos para cada notícia
+                newsItems.forEach(function(newsItem) {
+                    var newsDiv = document.createElement('div');
+                    newsDiv.className = 'news-item';
 
                     var newsTitle = document.createElement('h3');
-                    newsTitle.textContent = title;
-                    newsItem.appendChild(newsTitle);
+                    newsTitle.textContent = newsItem.title;
+                    newsDiv.appendChild(newsTitle);
 
                     var newsContent = document.createElement('p');
-                    newsContent.textContent = content;
-                    newsItem.appendChild(newsContent);
+                    newsContent.textContent = newsItem.content;
+                    newsDiv.appendChild(newsContent);
 
-                    if (imageUrl) {
+                    if (newsItem.imageUrl) {
                         var newsImage = document.createElement('img');
-                        newsImage.src = imageUrl;
-                        newsItem.appendChild(newsImage);
+                        newsImage.src = newsItem.imageUrl;
+                        newsDiv.appendChild(newsImage);
                     }
 
-                    // Adicionando a data abaixo do conteúdo
                     var newsDate = document.createElement('p');
                     newsDate.className = 'date';
-                    newsDate.textContent = "Publicado em: " + date; // Exibe a data e hora
-                    newsItem.appendChild(newsDate);
+                    newsDate.textContent = "Publicado em: " + formatDate(newsItem.date);
+                    newsDiv.appendChild(newsDate);
 
-                    newsContainer.appendChild(newsItem);
-                }
+                    newsContainer.appendChild(newsDiv);
+                });
             });
         }
     </script>
-
 </body>
 </html>
