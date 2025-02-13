@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Manutenção</title>
+    <link rel="stylesheet" href="Styles.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+    </header>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="noticias.html">Home</a></li>
+            <li><a href="Envio_noticia.html">Envia notícia</a></li>
+            <li><a href="Cheklist.html">Cheklist</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="form-container">
+            <h2>Formulário de Manutenção</h2>
+            <form id="maintenanceForm">
+                <div class="input-group">
+                    <label for="infoManutencao">Informações da manutenção:</label>
+                    <textarea id="infoManutencao" name="infoManutencao" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="frota">Frota:</label>
+                    <select id="frota" name="frota" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="responsavel">Responsável pela ocorrência:</label>
+                    <select id="responsavel" name="responsavel" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="implemento">Implemento Clamp cilindro e tubulação hidráulica:</label>
+                    <select id="implemento" name="implemento" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="marca">Marca:</label>
+                    <select id="marca" name="marca" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="tipoManutencao">Tipo de manutenção:</label>
+                    <select id="tipoManutencao" name="tipoManutencao" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="categoriaParada">Categoria de parada:</label>
+                    <select id="categoriaParada" name="categoriaParada" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="causaDefeito">Causa do defeito relatado:</label>
+                    <select id="causaDefeito" name="causaDefeito" multiple required>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="descricao">Descrição do ocorrido:</label>
+                    <textarea id="descricao" name="descricao" required></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="horario">Horário:</label>
+                    <input type="time" id="horario" name="horario" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="usuario">Nome do usuário:</label>
+                    <input type="text" id="usuario" name="usuario" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="dataRetorno">Data do retorno:</label>
+                    <input type="date" id="dataRetorno" name="dataRetorno" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="horaRetorno">Hora do retorno:</label>
+                    <input type="time" id="horaRetorno" name="horaRetorno" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="checklist">Checklist fechado por:</label>
+                    <input type="text" id="checklist" name="checklist" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="assinaturaMecanico">Assinatura do Mecânico:</label>
+                    <input type="text" id="assinaturaMecanico" name="assinaturaMecanico" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Minha Empresa. Todos os direitos reservados.</p>
+    </footer>
+    <script src="Script.js"></script>
+</body>
+</html>

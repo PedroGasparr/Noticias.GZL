@@ -3,53 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Contato</title>
-    <link rel="stylesheet" href="Styles.css">
-    <link rel="manifest" href="manifest.json">
-
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link para o CSS -->
 </head>
 <body>
     <header>
         <div class="logo">
+            <img src="logo.png" alt="Logo">
         </div>
     </header>
 
-    <div class="sidebar">
-        <ul>
-            <li><a href="noticias.html">Home</a></li>
-            <li><a href="index.html">Envia noticia</a></li>
-            <li><a href="#">Serviços</a></li>
-            <li><a href="#">Contato</a></li>
-        </ul>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="usuario">Usuário</label>
+                <input type="text" id="usuario" placeholder="Digite seu usuário" required>
+            </div>
+            <div class="input-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Digite sua senha" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="submit-btn">Entrar</button>
+            <div id="message" class="message"></div>
+        </form>
     </div>
 
-    <main>
-        <div class="form-container">
-            <h2>Envio de Noticia</h2>
-            <form id="contactForm">
-                <div class="input-group">
-                    <label for="nome">Titulo:</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="email">Texto:</label>
-                    <input type="text" id="email" name="email" required>
-                </div>
-
-                <div class="input-group">
-                    <label for="file">Imagem:</label>
-                    <textarea type="file" id="mensagem" name="mensagem" required></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn">Enviar</button>
-            </form>
-        </div>
-    </main>
-
     <footer>
-        <p>&copy; 2025 Minha Empresa. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Sua Empresa. Todos os direitos reservados.</p>
     </footer>
-    <script src="Script.js"></script>
+    
+    <script src="js/login.js"></script>
 </body>
 </html>
