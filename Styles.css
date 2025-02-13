@@ -25,7 +25,61 @@ body {
     background-color: var(--background-color);
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
+}
+
+/* Estilo para o container de notícias */
+.news-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens horizontalmente */
+    gap: 20px; /* Espaçamento entre as notícias */
+    max-width: 800px; /* Largura máxima do container */
+    margin: 0 auto; /* Centraliza o container na tela */
+    padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo para cada notícia */
+.news-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%; /* Ocupa toda a largura do container */
+    text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo para as imagens das notícias */
+.news-item img {
+    width: 100%; /* Faz a imagem ocupar 100% da largura do container */
+    max-width: 400px; /* Define um tamanho máximo para a imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 8px; /* Borda arredondada */
+    margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+}
+
+/* Estilo para o título da notícia */
+.news-item h3 {
+    font-size: 1.5em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+/* Estilo para o texto da notícia */
+.news-item p {
+    font-size: 1em;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+/* Estilo para o título h1 */
+h1 {
+    text-align: center; /* Centraliza o texto horizontalmente */
+    color: var(--footer-text-color); /* Usa a cor de texto definida nas variáveis */
+    font-size: 2em; /* Tamanho do título */
+    margin-top: 20px; /* Espaçamento superior */
+    width: 100%; /* Ocupa toda a largura disponível */
+    position: relative; /* Permite ajustes de posição */
+    left: 300px; /* Remove qualquer deslocamento horizontal */
 }
 
 /* Header */
@@ -37,13 +91,6 @@ header {
     align-items: center;
     padding: 15px;
 }
-header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; /* Move a logo para o lado direito */
-    background-color: #333;
-    padding: 10px 20px;
-}
 
 header .logo {
     display: flex;
@@ -51,16 +98,14 @@ header .logo {
 }
 
 header .logo img {
-    width: 150px; /* Define um tamanho padrão para a logo */
+    width: 150px;
     height: auto;
     transition: transform 0.3s ease;
 }
 
 header .logo img:hover {
-    transform: scale(1.05); /* Efeito de leve aumento ao passar o mouse */
+    transform: scale(1.05);
 }
-
-
 
 header nav ul {
     list-style: none;
@@ -86,7 +131,7 @@ header nav ul li a:hover {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200px; /* Diminuímos a largura da barra lateral */
+    width: 200px;
     height: 100%;
     background-color: var(--sidebar-bg-color);
     padding: 20px;
@@ -95,6 +140,7 @@ header nav ul li a:hover {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+    z-index: 1000;
 }
 
 .sidebar ul {
@@ -147,7 +193,7 @@ header nav ul li a:hover {
 
 /* Conteúdo Principal */
 main {
-    margin-left: 200px; /* Ajusta a largura do conteúdo para não cobrir a barra lateral */
+    margin-left: 200px;
     padding: 20px;
     flex-grow: 1;
 }
@@ -188,14 +234,13 @@ input, textarea {
     font-size: 16px;
     background-color: var(--input-bg-color);
     transition: all 0.3s ease-in-out;
-    resize: none; /* Impede redimensionamento */
+    resize: none;
 }
 
 input:focus, textarea:focus {
     border-color: var(--primary-color);
     background-color: var(--input-focus-color);
 }
-
 
 /* Botão de Enviar */
 .submit-btn {
@@ -241,11 +286,33 @@ footer {
 /* Responsividade */
 @media (max-width: 768px) {
     .sidebar {
-        width: 180px; /* Ajusta a largura em dispositivos móveis */
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .sidebar ul li {
+        margin-bottom: 0;
+    }
+
+    .sidebar ul li a {
+        padding: 10px 15px;
     }
 
     main {
-        margin-left: 180px;
+        margin-left: 0;
+        padding: 20px;
     }
 
     header nav ul {
@@ -255,21 +322,19 @@ footer {
 
 /* Logo no Header */
 header .logo img {
-    width: 150px; /* Largura padrão */
-    height: auto; /* Mantém a proporção da imagem */
+    width: 150px;
+    height: auto;
     transition: all 0.3s ease;
 }
 
 /* Quando o mouse passar sobre a logo */
 header .logo img:hover {
-    transform: scale(1.05); /* Aumenta um pouco a logo quando o mouse passar sobre */
+    transform: scale(1.05);
 }
 
 /* Remover ou comentar esta linha */
 .news-container {
     display: flex;
-    flex-direction: column; /* Altere para 'column' em vez de 'column-reverse' */
+    flex-direction: column;
     gap: 20px;
 }
-
-
