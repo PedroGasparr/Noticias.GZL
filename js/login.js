@@ -21,9 +21,10 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         // Exibe a resposta na tela
         document.getElementById("message").textContent = data;
 
-        // Se o login for bem-sucedido, redireciona para a página de notícias
+        // Se o login for bem-sucedido, armazene o status no sessionStorage e redirecione
         if (data === "Login bem-sucedido!") {
-            window.location.href = "https://pedrogasparr.github.io/Noticias.GZL/noticias.html";
+            sessionStorage.setItem("logado", "true"); // Armazena a sessão de login
+            window.location.href = "https://pedrogasparr.github.io/Noticias.GZL/noticias.html"; // Redireciona para a página de notícias
         }
     })
     .catch(error => {
